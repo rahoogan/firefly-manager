@@ -1,0 +1,35 @@
+{
+    "transaction_blocks": [
+        [
+            "^\\s+?Transactions$",
+            "Important Information",
+            "Date\\s+?Transaction Details"
+        ],
+        [
+            "^\\s+?Transactions$",
+            ".*?Account Name.*?",
+            "Date\\s+?Transaction Details"
+        ],
+        [
+            "Transactions",
+            "Closing Balance",
+            "Date\\s+?Transaction Details"
+        ]
+    ],
+    "files_whitelist": [
+        "qantas"
+    ],
+    "files_blacklist": [],
+    "ignore_lines": [
+        ".*?Card Number.*?",
+        ".*?Continued.*?",
+        ".*?Statement Begins.*?",
+        ".*?Statement Ends.*?",
+        ".*?qantasmoney.com\/prem.*?",
+        ".*?Qantas Premier Card Support.*?",
+        ".*?Closing Balance.*?",
+        ".*?Bpay Payments.*?"
+    ],
+    "column_number": 4,
+    "post_process": "qantas.QantasProcessor"
+}

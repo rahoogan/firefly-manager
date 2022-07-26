@@ -1,0 +1,9 @@
+data/
+deploy/firefly/.env
+deploy/firefly/.fidi.env
+deploy/firefly/conf.d/*.crt
+deploy/firefly/conf.d/*.pem
+deploy/firefly/conf.d/*.key
+*/__pycache/*
+*.pyc
+.env

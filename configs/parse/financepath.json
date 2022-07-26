@@ -1,0 +1,36 @@
+{
+    "transaction_blocks": [
+        [
+            "\\s+?Offset Transactions.*?$",
+            "\\s+\\.\\.\\.continued overleaf$",
+            "Date\\s+?Description"
+        ],
+        [
+            "\\s+?Offset Transactions.*?$",
+            "\\s+?A condition of your mortgage",
+            "Date\\s+?Description"
+        ],
+        [
+            "\\s+?Offset Transactions.*?$",
+            "\\s+?Resolving Complaints",
+            "Date\\s+?Description"
+        ],
+        [
+            "\\s+?Offset Transactions.*?$",
+            "\\s+?Closing Totals ",
+            "Date\\s+?Description"
+        ]
+    ],
+    "files_whitelist": [
+        "financepath"
+    ],
+    "files_blacklist": [],
+    "ignore_lines": [
+        ".*?Opening Balance.*?",
+        ".*?Brought Forward.*?",
+        ".*?BPAY Qantas Credit Cards.*?",
+        ".*?BPAY COMMONWEALTH CARDS.*?"
+    ],
+    "column_number": 5,
+    "post_process": "financepath.FPProcessor"
+}

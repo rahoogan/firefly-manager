@@ -1,0 +1,38 @@
+{
+    "transaction_blocks": [
+        [
+            "^\\s{20,100}Transactions$",
+            ".*?How to pay.*?",
+            "Date\\s+?Transaction Details"
+        ],
+        [
+            "^\\s{20,100}Transactions$",
+            "^\\s{20,100}Transactions$",
+            "Date\\s+?Transaction Details"
+        ],
+        [
+            "^\\s{20,100}Transactions$",
+            "^\\s+Interest charged on purchases.*?",
+            "Date\\s+?Transaction Details"
+        ],
+        [
+            "^\\s{20,100}Transactions$",
+            "^\\s+Please check your transactions listed on this statement.*?",
+            "Date\\s+?Transaction Details"
+        ]
+    ],
+    "files_whitelist": [
+        "commbank"
+    ],
+    "files_blacklist": [],
+    "ignore_lines": [
+        "^[0-9]+\\..*?",
+        "^\\s+?Transactions$",
+        "^\\s+Account.*?",
+        "^\\s+Page [0-9]+ of [0-9]+.*?",
+        "^\\s+[0-9]+\\s[A-Za-z]+ [0-9]{4}-.*?",
+        "^.*?Payment.*?Thank You"
+    ],
+    "column_number": 3,
+    "pre_process": "commbank.CommbankProcessor"
+}

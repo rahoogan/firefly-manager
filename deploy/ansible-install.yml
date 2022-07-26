@@ -1,0 +1,36 @@
+- name: Clone budget repo
+
+- name: Install budget requirements
+  pip:
+    requirements: "{{ budget_repo }}/requirements.txt"
+    virtualenv: "{{ budget_repo }}/env"
+    virtualenv_command: virtualenv-3.6
+
+- name: Create process directories
+  become: yes
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  with_items:
+    - "{{ budget_repo }}/process/raw"
+    - "{{ budget_repo }}/process/parsed"
+    - "{{ budget_repo }}/process/categorised"
+
+- name: Start firefly service
+  become: yes
+  docker_compose:
+    project_src: firefly
+
+- name: Start transcat service
+  docker_compose:
+    project_src: transcat
+
+- name: Install cron job for parsing
+  cron:
+    name: "Parse pdf bank statements for {{ item }}"
+    minute: "0"
+    hour: "5,2"
+    job: "{{ budget_repo }}/env/bin/python {{ budget_repo }}/parse.py -i "{{ budget_repo }}/process/raw" -o "{{ budget_repo }}/process/processed/{{ item }}-$(date +%Y%m%d-%H%M%S).csv" -c {{ budget_repo }}/configs/parse/{{ item }}.json"
+  with_items:
+    - ""
